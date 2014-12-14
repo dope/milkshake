@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+
+<html lang="en-US">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+	<meta name="description" content="Milkshake allows you to read your favourite blogs in an organized manner">
+
+	<link rel="icon" type="image/png" href="img/fav.png">
+	<link rel="stylesheet" type="text/css" href="css/base.css">
+	<title>Milkshake - Advanced News Reader</title>
+
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
+
+<!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+</head>
+
+<body>
+	<header class="mainHead">
+		<div class="headWrap frame">
+			<div class="bit-2"><h1 class="logo"><a class= href="/">Milk<span>shake</span></a></h1></div>
+			<div class="bit-2">
+				<nav>
+					<ul>
+						<li><a class="navLink" href="#">Blog</a></li>
+						<li><a class="navLink" href="#">Twitter</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+
+		<h2 class="titleHead">Welcome to <span>Milkshake</span></h2>
+		<p>Milkshake is Google Reader and Feedly merged into one and then simplified and then revamped from the ground up focusing on readability and you, the user.</p>
+		<a class="twitter popup pinkBtn" href="http://twitter.com/home?status=Milkshake Beta — Advanced News Reader+http://milkshake.im">Tweet This</a>
+	</header>
+
+	<section id="about" class="about frame">
+		<div class="bit-2 text">
+			<h2>About Milkshake</h2>
+			<p>The main objective when creating Milkshake was to give the user a good experience and let them decide what to read and not force them into reading something that's not relevant to them. This isn't a discovery app, it's for reading.</p>
+			<a class="pinkBtn newBtn" href="#signUp">Sign Up</a>
+		</div>
+		<div class="bit-2 macbook"></div>
+	</section>
+
+	<section class="steps frame">
+		<div class="bit-3">
+			<img src="img/links.svg" alt="Add your links">
+			<h1>Add Your Links</h1>
+			<p>Adding your blogs URL's to Milkshake couldn't be easier, When using the pastebox modal, you can easily build a collection of your favourite articles and blogs.</p>
+		</div>
+
+		<div class="bit-3">
+			<img src="img/heart.svg" alt="Pick your favourites">
+			<h1>Pick your favourites</h1>
+			<p>Milkshake gives you the option of favouriting articles and blogs that you can keep coming back to again and again, extremely useful for reference guides and tutorials.</p>
+		</div>
+
+		<div class="bit-3">
+			<img src="img/read.svg" alt="Read On The Go">
+			<h1>Read On The Go</h1>
+			<p>Read anywhere, everywhere and anyhow. Kindle, iOS, Android, Blackberry, Mac &amp; PC. Milkshake even saves your articles offline for them <i>No-Wi-Fi</i> moments.</p>
+		</div>
+	</section>
+
+	<section id="signUp" class="signUp">
+		<h1>Sign Up For Beta</h1>
+		<p>Milkshake is almost ready, If you’re interested in testing
+			it out, then sign up below to get exclusive access.</p>
+
+			<form class="sendItNow" method="post">
+				<input class="email" name="cm-hddid-hddid" type="email" placeholder="name@example.com" required>
+				<input class="submit" type="submit" value="Sign Up">
+			</form>
+		</section>
+
+		<footer class="mainFooter frame">
+			<div class="bit-2 copyright">
+				<p>&copy; 2014, Milkshake</p>
+			</div>
+			<div class="bit-2 credits">
+				<p><a href="http://lifes.gd">Created by Life's Good</a></p>
+			</div>
+		</footer>
+
+
+
+		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+		<script>
+			$('.popup').click(function (event) {
+				var width = 575,
+				height = 400,
+				left = ($(window).width() - width) / 2,
+				top = ($(window).height() - height) / 2,
+				url = this.href,
+				opts = 'status=1' +
+				',width=' + width +
+				',height=' + height +
+				',top=' + top +
+				',left=' + left;
+
+				window.open(url, 'twitter', opts);
+
+				return false;
+			});
+			$(document).ready(function () {
+				function filterPath(string) {
+					return string.replace(/^\//, '')
+					.replace(/(index|default).[a-zA-Z]{3,4}$/, '')
+					.replace(/\/$/, '');
+				}
+				var locationPath = filterPath(location.pathname);
+				var scrollElem = scrollableElement('html', 'body');
+
+				$('a[href*=#]').each(function () {
+					var thisPath = filterPath(this.pathname) || locationPath;
+					if (locationPath == thisPath && (location.hostname == this.hostname || !this.hostname) && this.hash.replace(/#/, '')) {
+						var $target = $(this.hash),
+						target = this.hash;
+						if (target) {
+							var targetOffset = $target.offset().top;
+							$(this).click(function (event) {
+								event.preventDefault();
+								$(scrollElem).animate({
+									scrollTop: targetOffset
+								}, 400, function () {
+									location.hash = target;
+								});
+							});
+						}
+					}
+				});
+
+				function scrollableElement(els) {
+					for (var i = 0, argLength = arguments.length; i < argLength; i++) {
+						var el = arguments[i],
+						$scrollElement = $(el);
+						if ($scrollElement.scrollTop() > 0) {
+							return el;
+						} else {
+							$scrollElement.scrollTop(1);
+							var isScrollable = $scrollElement.scrollTop() > 0;
+							$scrollElement.scrollTop(0);
+							if (isScrollable) {
+								return el;
+							}
+						}
+					}
+					return [];
+				}
+
+			});
+</script>
+</script>
+</body>
+</html>
